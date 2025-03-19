@@ -2572,7 +2572,7 @@ synchronization features."
               (pdf-view-mode (pdf-view-next-page-command))
               (doc-view-mode (doc-view-next-line-or-next-page))
               (djvu-read-mode (djvu-next-page 1))
-              (nov-mode (scroll-other-window)))))) ; nov-scroll-up does not work here
+              (nov-mode (nov-scroll-up nil))))))
 
 (defun org-noter-prev-page-from-notes ()
   "Flip to the previous page on document from notes buffer"
@@ -2583,7 +2583,7 @@ synchronization features."
               (pdf-view-mode (pdf-view-previous-page-command))
               (doc-view-mode (doc-view-previous-line-or-previous-page))
               (djvu-read-mode (djvu-prev-page 1))
-              (nov-mode (scroll-other-window-down)))))) ; nov-scroll-down does not work here
+              (nov-mode (nov-scroll-down nil))))))
 
 (defun org-noter-insert-note-from-notes ()
   "Insert a note at current page from notes buffer"
