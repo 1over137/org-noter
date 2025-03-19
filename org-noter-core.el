@@ -2585,6 +2585,13 @@ synchronization features."
               (djvu-read-mode (djvu-prev-page 1))
               (nov-mode (scroll-other-window-down)))))) ; nov-scroll-down does not work here
 
+(defun org-noter-insert-note-from-notes ()
+  "Insert a note at current page from notes buffer"
+  (interactive)
+  (org-noter--with-valid-session
+   (with-current-buffer (window-buffer (org-noter--get-doc-window))
+     (org-noter-insert-note))))
+
 (define-minor-mode org-noter-doc-mode
   "Minor mode for the document buffer.
 Keymap:
