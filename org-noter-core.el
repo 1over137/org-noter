@@ -2567,7 +2567,7 @@ synchronization features."
   "Flip to the next page on document from notes buffer"
   (interactive)
   (org-noter--with-valid-session
-   (with-current-buffer (window-buffer (org-noter--get-doc-window))
+   (with-selected-window (org-noter--get-doc-window)
      (cl-case major-mode
               (pdf-view-mode (pdf-view-next-page-command))
               (doc-view-mode (doc-view-next-line-or-next-page))
@@ -2578,7 +2578,7 @@ synchronization features."
   "Flip to the previous page on document from notes buffer"
   (interactive)
   (org-noter--with-valid-session
-   (with-current-buffer (window-buffer (org-noter--get-doc-window))
+   (with-selected-window  (org-noter--get-doc-window)
      (cl-case major-mode
               (pdf-view-mode (pdf-view-previous-page-command))
               (doc-view-mode (doc-view-previous-line-or-previous-page))
@@ -2589,7 +2589,7 @@ synchronization features."
   "Insert a note at current page from notes buffer"
   (interactive)
   (org-noter--with-valid-session
-   (with-current-buffer (window-buffer (org-noter--get-doc-window))
+   (with-selected-window (org-noter--get-doc-window)
      (org-noter-insert-note))))
 
 (define-minor-mode org-noter-doc-mode
