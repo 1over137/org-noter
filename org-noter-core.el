@@ -2563,6 +2563,28 @@ synchronization features."
   (advice-remove 'dired-rename-file 'org-noter--update-doc-rename-in-notes)
   (advice-remove 'dired-rename-file 'org-noter--update-notes-rename-in-notes))
 
+(defun org-noter-next-page-from-notes ()
+  "Flip to the next page on document from notes buffer"
+  (interactive)
+  (org-noter--with-valid-session
+   (with-current-buffer (window-buffer (org-noter--get-doc-window))
+     (cl-case major-mode
+              (pdf-view-mode (pdf-view-next-page-command))
+              (doc-view-mode (doc-view-next-line-or-next-page))
+              (djvu-read-mode (djvu-next-page 1))
+              (nov-mode (scroll-other-window)))))) ; nov-scroll-up does not work here
+
+(defun org-noter-prev-page-from-notes ()
+  "Flip to the previous page on document from notes buffer"
+  (interactive)
+  (org-noter--with-valid-session
+   (with-current-buffer (window-buffer (org-noter--get-doc-window))
+     (cl-case major-mode
+              (pdf-view-mode (pdf-view-previous-page-command))
+              (doc-view-mode (doc-view-previous-line-or-previous-page))
+              (djvu-read-mode (djvu-prev-page 1))
+              (nov-mode (scroll-other-window-down)))))) ; nov-scroll-down does not work here
+
 (define-minor-mode org-noter-doc-mode
   "Minor mode for the document buffer.
 Keymap:
